@@ -2,6 +2,7 @@ package com.example.androiduitesting;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -63,6 +64,17 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 cityAdapter.clear();
             }
+        });
+
+        cityList.setOnItemClickListener((adapterView, view, i, l) -> {
+
+            // get city name
+            String cityName = cityAdapter.getItem(i);
+
+            // create intent to ShowActivity, passing in city name
+            Intent intent = new Intent(MainActivity.this, ShowActivity.class);
+            intent.putExtra("cityName", cityName);
+            startActivity(intent);
         });
     }
 }
